@@ -111,11 +111,46 @@
         </div>
         
         <p class="slogan text-white fw-bold" style="letter-spacing: 1px;">
-            Performance e Estética de Nicho <br>
+            Performance e Estética <br>
             <span class="small opacity-75" style="font-size: 0.8rem; border-top: 1px solid var(--psa-red); padding-top: 5px;">ORGULHOSAMENTE PORTUGUÊS</span>
         </p>
+        <div class="container mt-4 mb-3">
+    <div class="row justify-content-end">
+        <div class="col-auto d-flex align-items-center">
+            <label class="me-2 small fw-bold text-white-50">ORDENAR POR:</label>
+            <select id="sortPrice" class="form-select form-select-sm bg-dark text-white border-secondary" style="width: auto;" onchange="sortProducts()">
+                <option value="default">Destaques</option>
+                <option value="low">Menor Preço</option>
+                <option value="high">Maior Preço</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="product-grid" class="row g-3">
+        </div>
+</div>
+<div class="container mt-4 mb-3">
+    <div class="row justify-content-end">
+        <div class="col-auto d-flex align-items-center">
+            <label class="me-2 small fw-bold text-white-50">ORDENAR POR:</label>
+            <select id="sortPrice" class="form-select form-select-sm bg-dark text-white border-secondary" style="width: auto;" onchange="sortProducts()">
+                <option value="default">Destaques</option>
+                <option value="low">Menor Preço</option>
+                <option value="high">Maior Preço</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="product-grid" class="row g-3">
+        </div>
+</div>
     </div>
 </header>
+
 
     <main class="container my-5">
         <div class="row g-4">
@@ -126,7 +161,7 @@
                         <button class="arrow-btn arrow-left" onclick="changeKeyring(-1, event)">❮</button>
                         <img id="keyring-img" src="https://ae-pic-a1.aliexpress-media.com/kf/Sb2716344f73541e4ba3bcd2ac2a995ccP.jpg_220x220q75.jpg_.avif" class="card-img-top">
                         <div class="card-overlay" id="keyring-desc">
-                            Porta-chaves em metal de alta qualidade com o logo clássico Peugeot. Resistente e elegante.
+                            Porta-chaves em metal de alta qualidade com o logo clássico Peugeot/Citroen. Resistente e elegante.
                         </div>
                         <button class="arrow-btn arrow-right" onclick="changeKeyring(1, event)">❯</button>
                     </div>
@@ -168,8 +203,8 @@
                     <div class="card-body text-center">
                         <span class="category-label">Interior</span>
                         <h6 class="fw-bold">Manete Replica Ralliart</h6>
-                        <p class="h5 text-danger fw-bold">24,50€</p>
-                        <button onclick="addToCart('Manete Ralliart', 24.50, 'https://ae-pic-a1.aliexpress-media.com/kf/S353710e13f0d4ab3b6b57e27a5b5168e9.jpg_220x220q75.jpg_.avif')" class="btn-buy">Adicionar</button>
+                        <p class="h5 text-danger fw-bold">19,90€</p>
+                        <button onclick="addToCart('Manete Ralliart', 19.90, 'https://ae-pic-a1.aliexpress-media.com/kf/S353710e13f0d4ab3b6b57e27a5b5168e9.jpg_220x220q75.jpg_.avif')" class="btn-buy">Adicionar</button>
                     </div>
                 </div>
             </div>
@@ -187,57 +222,5 @@
         </div>
     </footer>
 
-    <script>
-        const keyringData = [
-            {
-                img: "https://ae-pic-a1.aliexpress-media.com/kf/Sb2716344f73541e4ba3bcd2ac2a995ccP.jpg_220x220q75.jpg_.avif",
-                title: "PORTA CHAVES CITROËN",
-                desc: "Design premium com o duplo chevron da Citroën."
-            },
-            {
-                img: "https://ae-pic-a1.aliexpress-media.com/kf/S7b3d1b02f4f34f7e8308d65b3a0a3cceW.jpg_220x220q75.jpg_.avif",
-                title: "PORTA CHAVES PEUGEOT",
-                desc: "Porta-chaves em metal de alta qualidade clássico Peugeot."
-            },
-            {
-                img: "https://ae-pic-a1.aliexpress-media.com/kf/S579b05c0cdb34dd587520b68760aabc2i.jpg_220x220q75.jpg_.avif",
-                title: "PORTA CHAVES PEUGEOT 206",
-                desc: "Edição especial entusiastas 206 gravado a laser."
-            }
-        ];
-
-        let currentKeyringIndex = 0;
-
-        function changeKeyring(direction, event) {
-            event.stopPropagation();
-            currentKeyringIndex += direction;
-            if (currentKeyringIndex < 0) currentKeyringIndex = keyringData.length - 1;
-            if (currentKeyringIndex >= keyringData.length) currentKeyringIndex = 0;
-
-            document.getElementById('keyring-img').src = keyringData[currentKeyringIndex].img;
-            document.getElementById('keyring-title').innerText = keyringData[currentKeyringIndex].title;
-            document.getElementById('keyring-desc').innerText = keyringData[currentKeyringIndex].desc;
-        }
-
-        function addKeyringToCart() {
-            const product = keyringData[currentKeyringIndex];
-            addToCart(product.title, 7.99, product.img);
-        }
-
-        function addToCart(name, price, img) {
-            let cart = JSON.parse(localStorage.getItem('psa_cart')) || [];
-            cart.push({name: name, price: price, img: img}); 
-            localStorage.setItem('psa_cart', JSON.stringify(cart));
-            updateCart();
-            alert("✅ " + name + " adicionado!");
-        }
-
-        function updateCart() {
-            let cart = JSON.parse(localStorage.getItem('psa_cart')) || [];
-            document.getElementById('cart-count').innerText = cart.length;
-        }
-
-        updateCart();
-    </script>
-</body>
+<script src="script.js"></script>
 </html>
